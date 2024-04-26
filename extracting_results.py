@@ -15,88 +15,7 @@ import shutil
 import sys
 
 
-# get names of all directories in a file:
-
-files = os.listdir(os.getcwd())
-directories = [item for item in files if os.path.isdir(os.path.join(os.getcwd(),item))]
-
-for 'copy_case' in directories:
-    directories.remove('copy_case')
-    
-print("Directories in the current directory (excluding 'copy_case'):", directories)
-
-os.mkdir('results')
-
-#df_results = pd.DataFrame(directories, columns=['Names'])
-
-#for index, row in df_results.iterrows():
-    
-    # separate name into cone angle, pitch angle, rotation rate
- 
-pitch_angles = []
-cone_angles = []
-omegas = []
-fpx = []; fpy = []; fpz = []
-fvx = []; fvy = []; fvz = []
-mpx = []; mpy = []; mpz = []
-mvx = []; mvy = []; mvz = []
-
-
-for name in directories:
-    
-    variables = name.split('_')
-    cone_angles.append(variables[0])
-    omegas.append(variables[1])
-    pitch_angles.append(variables[2])
-    
-    plot_residuals(name)
-    plot_forces_and_moments(name)
-    
-    average_fpx, average_fpy, average_fpz, average_fvx, average_fvy, average_fvz, average_mpx, average_mpy, average_mpz, average_mvx, average_mvy, average_mvz = average_forces(name)
-    
-    fpx.append(average_fpx)
-    fpy.append(average_fpy)
-    fpz.append(average_fpz)
-    fvx.append(average_fvx)
-    fvy.append(average_fvy)
-    fvz.append(average_fvz)
-    mpx.append(average_mpx)
-    mpy.append(average_mpy)
-    mpz.append(average_mpz)
-    mvx.append(average_mvx)
-    mvy.append(average_mvy)
-    mvz.append(average_mvz)
-    
-
-    
-
-# Create DataFrame
-data = {
-    'Case': directories
-    'Cone Angle': cone_angles,
-    'Omega': omegas,
-    'Pitch Angle': pitch_angles,
-    'Average Fpx': fpx,
-    'Average Fpy': fpy,
-    'Average Fpz': fpz,
-    #'Average Fvx': fvx,
-    #'Average Fvy': fvy,
-    #'Average Fvz': fvz,
-    'Average Mpx': mpx,
-    'Average Mpy': mpy,
-    'Average Mpz': mpz,
-    #'Average Mvx': mvx,
-    #'Average Mvy': mvy,
-    #'Average Mvz': mvz
-}
-
-df = pd.DataFrame(data)
-
-# Save DataFrame to CSV file in results directory
-df.to_csv('results/forces_results.csv', index=False)
-    
-    
-# functions
+# defining functions
 # plot forces and moments
 def plot_forces_and_moments(file_name):
     case = file_name
@@ -291,3 +210,86 @@ def plot_residuals(case):
     plt.legend()
 
     plt.savefig(f'results/{case}_residuals_plot.png')
+    plt.closefig()
+
+# get names of all directories in a file:
+
+files = os.listdir(os.getcwd())
+directories = [item for item in files if os.path.isdir(os.path.join(os.getcwd(),item))]
+
+for 'copy_case' in directories:
+    directories.remove('copy_case')
+    
+print("Directories in the current directory (excluding 'copy_case'):", directories)
+
+os.mkdir('results')
+
+#df_results = pd.DataFrame(directories, columns=['Names'])
+
+#for index, row in df_results.iterrows():
+    
+    # separate name into cone angle, pitch angle, rotation rate
+ 
+pitch_angles = []
+cone_angles = []
+omegas = []
+fpx = []; fpy = []; fpz = []
+fvx = []; fvy = []; fvz = []
+mpx = []; mpy = []; mpz = []
+mvx = []; mvy = []; mvz = []
+
+
+for name in directories:
+    
+    variables = name.split('_')
+    cone_angles.append(variables[0])
+    omegas.append(variables[1])
+    pitch_angles.append(variables[2])
+    
+    plot_residuals(name)
+    plot_forces_and_moments(name)
+    
+    average_fpx, average_fpy, average_fpz, average_fvx, average_fvy, average_fvz, average_mpx, average_mpy, average_mpz, average_mvx, average_mvy, average_mvz = average_forces(name)
+    
+    fpx.append(average_fpx)
+    fpy.append(average_fpy)
+    fpz.append(average_fpz)
+    fvx.append(average_fvx)
+    fvy.append(average_fvy)
+    fvz.append(average_fvz)
+    mpx.append(average_mpx)
+    mpy.append(average_mpy)
+    mpz.append(average_mpz)
+    mvx.append(average_mvx)
+    mvy.append(average_mvy)
+    mvz.append(average_mvz)
+    
+
+    
+
+# Create DataFrame
+data = {
+    'Case': directories
+    'Cone Angle': cone_angles,
+    'Omega': omegas,
+    'Pitch Angle': pitch_angles,
+    'Average Fpx': fpx,
+    'Average Fpy': fpy,
+    'Average Fpz': fpz,
+    #'Average Fvx': fvx,
+    #'Average Fvy': fvy,
+    #'Average Fvz': fvz,
+    'Average Mpx': mpx,
+    'Average Mpy': mpy,
+    'Average Mpz': mpz,
+    #'Average Mvx': mvx,
+    #'Average Mvy': mvy,
+    #'Average Mvz': mvz
+}
+
+df = pd.DataFrame(data)
+
+# Save DataFrame to CSV file in results directory
+df.to_csv('results/forces_results.csv', index=False)
+    
+    
