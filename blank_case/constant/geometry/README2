@@ -1,0 +1,23 @@
+thursday 8th June
+13:53
+
+file imported here (original_ta1.stl) is the original file, through solidworks to a binary stl, through freeCAD as an ascii stl 
+
+Now to transform it:
+
+new name: transformed.stl
+
+
+transformed_scaled.stl ive scaled this one by 0.005
+
+made a copy and named it blade7
+
+
+Rx=60
+Ry=30
+
+Made an unrotated copy of this. Named it 'blade.stl'
+
+
+blade.stl has once again been edited. It is now the one in yr 2 term 2 week 8 of the notebook
+.
