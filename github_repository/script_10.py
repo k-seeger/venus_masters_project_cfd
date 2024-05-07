@@ -113,9 +113,9 @@ for angle in cone_angles:
         
             allrun_file_contents +="""
             
-            runApplication surfaceTransformPoints "Rx={2}" constant/geometry/blade.stl constant/geometry/blade.stl
+            runApplication surfaceTransformPoints "Rx={2}" constant/geometry/original_blade.stl constant/geometry/blade_pitch.stl
             mv log.surfaceTransformPoints log.surfaceTransformPoints1
-            runApplication surfaceTransformPoints "Ry={0}" constant/geometry/blade.stl constant/geometry/blade.stl
+            runApplication surfaceTransformPoints "Ry={0}" constant/geometry/blade_pitch.stl constant/geometry/blade.stl
             runApplication surfaceFeatures
             runApplication blockMesh
             
