@@ -1,0 +1,7 @@
+original_blade.stl is the unrotated blade stl file
+
+Allrun will rotate it twice.
+The first will rotate about the x axis to the given pitch angle, and this will be named blade_pitch
+The second will rotate blade_pitch to the given cone angle (about the y axis) and this will be called blade.stl
+
+Openfoam will use the geometry named 'blade.stl' 
